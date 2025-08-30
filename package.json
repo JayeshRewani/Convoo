@@ -1,0 +1,14 @@
+{
+  "name": "convoo",
+  "version": "1.0.0",
+  "description": "Chat-app",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend" 
+  },
+  "keywords": ["MERN","Chat-App"],
+  "author": "Jayesh Rewani",
+  "license": "ISC",
+  "type": "commonjs"
+}
