@@ -1,7 +1,7 @@
 import React from 'react'
 import useAuthUser from '../hooks/useAuthUser';
 import { Link, useLocation } from "react-router"
-import { BellIcon, HomeIcon, Slack, UserIcon } from 'lucide-react';
+import { BellIcon, HomeIcon, Slack, UserIcon, MenuIcon, XIcon } from 'lucide-react';
 
 function Sidebar() {
     const { authUser } = useAuthUser();
@@ -10,7 +10,9 @@ function Sidebar() {
 
 
   return (
-    <aside className='w-64 bg-base-200 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0'>
+    <>
+
+    <aside className="w-64 bg-base-200 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">
         <div className='p-5 border-b border-base-300'>
             <Link className='flex items-center gap-2.5' to="/">
                 <Slack className='size-9 text-primary'/>
@@ -65,6 +67,7 @@ function Sidebar() {
         </div>
 
     </aside>
+    </>
   )
 }
 

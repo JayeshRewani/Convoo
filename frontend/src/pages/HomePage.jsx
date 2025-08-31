@@ -62,10 +62,16 @@ const HomePage = () => {
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Your Friends
           </h2>
+          <div className="space-x-1 gap-1">
           <Link to="/notifications" className="btn btn-outline btn-sm">
             <UsersIcon className="mr-2 size-4" />
             Friend Requests
           </Link>
+          <Link to="/aboutdev" className="btn btn-outline btn-sm">
+            <UsersIcon className="mr-2 size-4" />
+            About The Developer
+          </Link>
+          </div>
         </div>
 
         {loadingFriends ? (

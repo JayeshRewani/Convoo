@@ -1,7 +1,15 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router";
 
-import { HomePage, SignUpPage, LoginPage, OnBoardingPage, NotificationPage, CallPage, ChatPage } from "./constants/importPage.js";
+import {
+  HomePage,
+  SignUpPage,
+  LoginPage,
+  OnBoardingPage,
+  NotificationPage,
+  CallPage,
+  ChatPage,
+} from "./constants/importPage.js";
 import { Toaster } from "react-hot-toast";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
@@ -9,24 +17,21 @@ import ForgotPassword from "./pages/ForgotPassword.jsx";
 import Layout from "./components/Layout.jsx";
 import useThemeStore from "./store/useThemeStore.js";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import AboutDev from "./pages/AboutDev.jsx";
 
 function App() {
-
-  const {isLoading,authUser} = useAuthUser();
-  const { theme } = useThemeStore()
+  const { isLoading, authUser } = useAuthUser();
+  const { theme } = useThemeStore();
 
   const isOnBoarded = authUser?.isOnBoarded;
-  const isAuthenticated = Boolean(authUser)
+  const isAuthenticated = Boolean(authUser);
 
   if (isLoading) {
-    return (
-      <PageLoader />
-    )
+    return <PageLoader />;
   }
 
   return (
     <div data-theme={theme}>
-      
       <Routes>
         <Route
           path="/"
@@ -42,23 +47,47 @@ function App() {
         />
         <Route
           path="/signup"
-          element={!isAuthenticated ? <SignUpPage /> : <Navigate to={isOnBoarded ? "/" : "/onboarding"} />}
+          element={
+            !isAuthenticated ? (
+              <SignUpPage />
+            ) : (
+              <Navigate to={isOnBoarded ? "/" : "/onboarding"} />
+            )
+          }
         />
         <Route
           path="/login"
-          element={!isAuthenticated ? <LoginPage /> : <Navigate to={isOnBoarded ? "/" : "/onboarding"} />}
+          element={
+            !isAuthenticated ? (
+              <LoginPage />
+            ) : (
+              <Navigate to={isOnBoarded ? "/" : "/onboarding"} />
+            )
+          }
         />
-        <Route 
+        <Route
           path="/forgot-password"
-          element={!isAuthenticated ? <ForgotPassword /> : <Navigate to={isOnBoarded ? "/" : "/onboarding"} />}
-          />
+          element={
+            !isAuthenticated ? (
+              <ForgotPassword />
+            ) : (
+              <Navigate to={isOnBoarded ? "/" : "/onboarding"} />
+            )
+          }
+        />
 
-        <Route 
+        <Route
           path="/reset-password/:token"
-          element={!isAuthenticated ? <ResetPassword /> : <Navigate to={isOnBoarded ? "/" : "/onboarding"} />}
-          />
+          element={
+            !isAuthenticated ? (
+              <ResetPassword />
+            ) : (
+              <Navigate to={isOnBoarded ? "/" : "/onboarding"} />
+            )
+          }
+        />
 
-         <Route
+        <Route
           path="/onboarding"
           element={
             isAuthenticated ? (
@@ -96,7 +125,24 @@ function App() {
         />
         <Route
           path="/chat/:id"
-          element={isAuthenticated ? <Layout><ChatPage /></Layout> : <Navigate to="/login" />}
+          element={
+            isAuthenticated ? (
+              <Layout>
+                <ChatPage />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/aboutdev"
+          element={
+            <Layout showSidebar>
+              <AboutDev />
+            </Layout>
+          }
         />
       </Routes>
 
